@@ -1,0 +1,22 @@
+<h2> New User </h2>
+
+<%=flash[:error].join(", ") if flash[:error]%>
+
+<form action="/users" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<div class="control-group">
+		<label for="user_username" class="control-label">Username:</label>
+		<input type="text" name="user[name]" id="user_username" placeholder="Username" value="<%=@user.name%>">
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="user_password">Password</label>
+		<input type="password" id="user_password" placeholder="Password" name="user[password]">
+
+		<label class="control-label" for="user_password_conf">Confirm Password</label>
+		<input type="password" id="user_password_conf" placeholder="Confirm Password" name="user[password_confirmation]"><br />
+	</div>
+	<input type="submit" value="Create User">
+	<!-- confirmation -->
+</form>

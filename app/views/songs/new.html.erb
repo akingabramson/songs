@@ -1,0 +1,13 @@
+<h2>Submit New Song</h2>
+
+<form action="/songs" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<div class="control-group">
+		<label for="user_username" class="control-label">Username:</label>
+		<input type="text" name="user[name]" id="user_username" placeholder="Username" value="<%=@user.name%>">
+	</div>
+
+	<input type="submit" value="Submit">
+
+</form>

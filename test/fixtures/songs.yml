@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  url: MyString
+  solved: false
+  tough_points: 1
+
+two:
+  user_id: 1
+  url: MyString
+  solved: false
+  tough_points: 1

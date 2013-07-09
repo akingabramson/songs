@@ -1,0 +1,20 @@
+<h2> Login </h2>
+
+<%=flash[:error].join(", ") if flash[:error]%>
+
+<form action="/session" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<div class="control-group">
+		<label class="control-label" for="user_username">Username:</label>
+		<input type="text" name="name" id="user_username" placeholder="Username" value="<%=@user.name%>">
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="user_password">Password: </label>
+		<input type="password" class="control-label" placeholder="Password" id="user_password" name="password"><br />
+	</div>
+
+	<input type="submit" value="Create User">
+	<!-- confirmation -->
+</form>
