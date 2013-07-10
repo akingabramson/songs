@@ -34,7 +34,7 @@ module Songs
     # config.i18n.default_locale = :de
 
     # Configure the default encoding used in templates for Ruby 1.9.
-    config.filepicker_rails.api_key = "Your filepicker.io API Key"
+    config.filepicker_rails.api_key = ENV["FILEPICKER_KEY"]
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.

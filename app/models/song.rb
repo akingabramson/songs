@@ -1,5 +1,23 @@
+# == Schema Information
+#
+# Table name: songs
+#
+#  id           :integer          not null, primary key
+#  user_id      :integer
+#  url          :string(255)
+#  solved       :boolean          default(FALSE)
+#  tough_points :integer          default(0)
+#  hints        :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class Song < ActiveRecord::Base
-  attr_accessible :solved, :tough_points, :url, :user_id, :hints
+  attr_accessible :url, :user_id, :hints
+
+  validates :url, :user_id, presence: true
+  validates :url, uniqueness: true
+
 
   belongs_to :user
 

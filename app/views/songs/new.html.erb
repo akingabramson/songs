@@ -1,13 +1,27 @@
-<h2>Submit New Song</h2>
 
-<form action="/songs" method="post">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-	<div class="control-group">
-		<label for="user_username" class="control-label">Username:</label>
-		<input type="text" name="user[name]" id="user_username" placeholder="Username" value="<%=@user.name%>">
-	</div>
+<div class="errors">
+		<%=flash[:error] if flash[:error]%>
+</div>
 
-	<input type="submit" value="Submit">
+<div class="form-container song-form">
+		<h3>Submit New Song</h3>
 
-</form>
+		<span>Upload the song that's on the tip of your tongue below. <br />(Make sure it's an mp3.)</span>
+
+		<form accept-charset="UTF-8" action="/songs" id="new_song" method="post">
+			<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+			<input type="hidden" name="song[url]" id="song-url" value="">
+			 <div class="pick-file">
+				 <input data-fp-apikey="AQsD255NRTVqxRi5wx0tfz" class="btn" id="song_url" name="song[url]" size="30" type="filepicker" onchange="uploaded(event)" data-fp-mimetypes="audio/*"/>
+			</div>
+		  <br />
+		  <textarea name="song[hints]" id="song_hint" placeholder="Can you think of any hints to help people figure out the song? (where you heard it, what the lyrics sound like, etc. )"></textarea>
+
+			<input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="1NlOkoejj+Xa2JffVLHz9pit3Hbk2UiVcFthY3JzDbE=" />
+			<br />
+
+		  <input class="submit-song btn btn-primary" name="commit" type="submit" value="Submit Song" />
+
+		</form>	
+</div>

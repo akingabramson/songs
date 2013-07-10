@@ -5,11 +5,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_username(params[:username])
+    @user = User.find_by_name(params[:name])
     if @user.try(:authenticate, params[:password])
       session[:session_token] = @user.reset_session_token!
       redirect_back_or_default
     else
+      flash[:error] = "Invalid username or password."
+      @user = User.new({name: params[:name]})
       render :new
     end
   end

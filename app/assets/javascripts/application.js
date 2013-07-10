@@ -13,3 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+uploaded = function(event) {
+	$(".pick-file").html("Uploaded!");
+	var url = event.fpfile.url;
+	console.log(url);
+	$("#song-url").attr("value", url)
+}
+
+$(function(){
+})
