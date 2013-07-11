@@ -1,12 +1,11 @@
 
 
-<div class="errors">
-		<%=flash[:error] if flash[:error]%>
-</div>
 
 <div class="form-container song-form">
 		<h3>Submit New Song</h3>
-
+		<div class="errors">
+				<%=flash[:error] if flash[:error]%>
+		</div>
 		<span>Upload the song that's on the tip of your tongue below. <br />(Make sure it's an mp3.)</span>
 
 		<form accept-charset="UTF-8" action="/songs" id="new_song" method="post">

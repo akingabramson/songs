@@ -1,6 +1,6 @@
 Songs::Application.routes.draw do
 
-  root :to => "root#root"
+  root :to => "random_songs#show"
 
   resources :users
   resources :songs
@@ -8,6 +8,9 @@ Songs::Application.routes.draw do
   resources :votes, only: [:create, :update, :destroy]
   resources :ratings, only: [:create, :update, :destroy]
   resource :session, only: [:new, :create, :destroy]
+  resources :toughest_songs, only: :index
+  resource :random_song, only: :show
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

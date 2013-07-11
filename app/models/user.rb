@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
   has_many :guesses
   has_many :votes, foreign_key: :voter_id, inverse_of: :voter
 
+  def toughness
+    self.song_toughness_ratings.average(:value).to_s
+  end
+
   def reset_session_token!
     self.session_token = SecureRandom.urlsafe_base64(16)
     self.save!

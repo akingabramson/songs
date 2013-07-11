@@ -8,6 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%= render partial: "shared/navbar", locals: {page: @page} %>
 	<div id="modal" class="modal hide fade">
 		<div class="modal-header">
   		<h2>Oops!</h2>

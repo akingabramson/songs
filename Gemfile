@@ -25,6 +25,8 @@ group :development do
 end
 
 gem 'ejs'
+gem 'delayed_job_active_record'
+gem 'foreman'
 gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-facebook'
