@@ -1,7 +1,7 @@
 
 playOrStopSong = function(event) {
 	event.preventDefault();
-	
+
 	var button = $(event.currentTarget);
 	var song = document.getElementById('song');
 	if (button.hasClass("stop-link")) {
@@ -53,6 +53,8 @@ submitGuess = function(button, guessText) {
 			}
 		},
 		success: function(guess) {
+			// reassign AUTH_TOKEN?
+
 			var renderedGuess = JST["guess"]({guess: guess});
 			button.text("Submitted!");
 			button.addClass("btn-success");
@@ -65,6 +67,92 @@ submitGuess = function(button, guessText) {
 	})
 }
 
+checkVote = function(event) {
+	var voteButton = $(event.currentTarget);
+	var upvoteRequest = !!voteButton.hasClass("icon-thumbs-up");
+	var upvoted = !!voteButton.hasClass("upvoted")
+	var downvoted = !!voteButton.hasClass("downvoted")
+
+	var guessId = voteButton.data("guess-id")
+
+
+	var voteId = voteButton.data("id");
+	console.log(voteId);
+
+	if (!!voteId) {
+		if ((upvoteRequest && upvoted) || (!upvoteRequest && downvoted)) {
+			deleteVote(voteId, voteButton, upvoteRequest);
+		} else {
+			editVote(voteId, voteButton, upvoteRequest, guessId);
+		}		// test here console
+	} else {
+		createVote(upvoted, guessId, upvoteRequest, voteButton)
+	}
+}
+
+createVote = function(upvoted, guessId, upvoteRequest, voteButton) {
+	$.ajax({
+		url: "/votes",
+		type: "post",
+		data: {
+			vote: {
+				upvote: upvoteRequest,
+				guess_id: guessId
+			}
+		},
+		success: function(vote) {
+			if (upvoteRequest) {
+				voteButton.toggleClass("upvoted");
+			} else {
+				voteButton.toggleClass("downvoted");
+			}
+			voteButton.data("id", vote.id);
+		},
+		error: function() {
+			fireModal("Voting error.  What is this, the 2000 presidential campaign?")
+		}
+	})
+}
+
+editVote = function(voteId, voteButton, upvoteRequest, guessId) {
+	$.ajax({
+		url: "/votes/" + voteId,
+		type: "put",
+		data: {
+			vote: {
+				upvote: upvoteRequest,
+				guess_id: guessId
+			}
+		},
+		success: function() {
+				voteButton.toggleClass("upvoted");
+				voteButton.toggleClass("downvoted");
+		},
+		error: function() {
+			fireModal("Voting error.  What is this, the 2000 presidential campaign?")
+		}
+	})
+}
+
+deleteVote = function(voteId, voteButton, upvoted) {
+	$.ajax({
+		url: "/votes/" + voteId,
+		type: "delete",
+		success: function() {
+			console.log("vote deleted");
+			if (upvoted) {
+				voteButton.toggleClass("upvoted");
+			} else {
+				voteButton.toggleClass("downvoted");
+			}
+			voteButton.data("id", undefined);
+		},
+		error: function() {
+			fireModal("Couldn't delete vote.");
+		}
+	})
+}
+
 fireModal = function(text) {
 	$(".modal-body").html(text);
 	$("#modal").modal();
@@ -72,6 +160,7 @@ fireModal = function(text) {
 
 $("#music-link").on("click", playOrStopSong);
 $("#submit-guess").on("click", checkGuess);
+$(".vote").on("click", checkVote)
 
 // $(function(){
 

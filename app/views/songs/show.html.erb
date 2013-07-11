@@ -18,7 +18,7 @@
 			<textarea id="guess-text" placeholder="Guess here..."></textarea><br />
 			<button id="submit-guess"class="btn btn-primary">Guess!</button>
 		</div>
-		<%= render partial: "guess_list", locals: {guesses: @guesses} %>
+		<%= render partial: "guess_list", locals: {guesses: @guesses, votes: @votes} %>
 	</div>
 </div>
 

@@ -1,5 +1,7 @@
 <div class="guess-list">
 	<% guesses.each do |guess| %>
+
+		<% guess_votes = votes.select {|vote| vote.guess_id == guess.id} %>
 		<div class="guess">
 			<div class="guess-info">
 				<div class="guess-username"><%=guess.user.name%>:</div>
@@ -8,7 +10,7 @@
 			<div class="guess-score-votes">
 				<div class="guess-score"><%=guess.score%>
 				</div>
-				<%= render partial: "shared/votes", locals: {guess: guess} %>
+				<%= render partial: "shared/votes", locals: {guess: guess, votes: guess_votes} %>
 			</div>
 		</div>
 	<% end %>

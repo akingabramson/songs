@@ -5,6 +5,7 @@ Songs::Application.routes.draw do
   resources :users
   resources :songs
   resources :guesses, only: [:create, :update, :destroy]
+  resources :votes, only: [:create, :update, :destroy]
   
   resource :session, only: [:new, :create, :destroy]
   # The priority is based upon order of creation:

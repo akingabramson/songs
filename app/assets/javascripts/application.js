@@ -18,7 +18,6 @@
 //= require_tree .
 
 $(function(){
-	console.log(AUTH_TOKEN);
 })
 
 

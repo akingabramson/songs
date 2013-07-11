@@ -20,7 +20,11 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     if @song
       @guesses = @song.guesses
-      # @votes = current_user.votes
+      if logged_in?
+        @votes = @song.votes_for_user(current_user.id)
+      else
+        @votes = []
+      end
       render :show
     else
       render json: {}, status: 404

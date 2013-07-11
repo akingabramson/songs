@@ -18,10 +18,12 @@ class User < ActiveRecord::Base
 
   has_many :songs
   has_many :guesses
+  has_many :votes, foreign_key: :voter_id, inverse_of: :voter
 
   def reset_session_token!
     self.session_token = SecureRandom.urlsafe_base64(16)
     self.save!
     return self.session_token
   end
+
 end

@@ -19,6 +19,11 @@ class Song < ActiveRecord::Base
   validates :url, uniqueness: true
 
   has_many :guesses
+  has_many :votes, through: :guesses
   belongs_to :user
+
+  def votes_for_user(user_id)
+    self.votes.where("votes.voter_id = ?", user_id)
+  end
 
 end
