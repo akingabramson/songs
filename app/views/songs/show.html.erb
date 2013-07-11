@@ -1,3 +1,26 @@
-<audio src="<%=@song.url%>">
+<audio id="song" src="<%=@song.url%>">
 <p>Your browser does not support the audio element.</p>
 </audio>
+<div class="show-song">
+	<div><h3>Song #<%=@song.id%></h3></div>
+	<div class="hint">
+		<b class="hint-label">Hint:</b>
+		<p>
+			<%= @song.hints ? @song.hints : "No hints given" %>
+		</p>
+	</div>
+	<div class="music-button-div">
+		<a href="#" id="music-link" class="play-button"><span class="icon-play-circled music-button"></span></a>
+	</div>
+	<div class="show-guesses">
+		<div class="new-guess-form">
+			<input type="hidden" id="song-id" data-id="<%=@song.id%>">
+			<textarea id="guess-text" placeholder="Guess here..."></textarea><br />
+			<button id="submit-guess"class="btn btn-primary">Guess!</button>
+		</div>
+		<%= render partial: "guess_list", locals: {guesses: @guesses} %>
+	</div>
+</div>
+
+
+<%= javascript_include_tag "songshow" %>

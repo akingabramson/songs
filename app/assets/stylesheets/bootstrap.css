@@ -2421,7 +2421,7 @@ input[type="submit"].btn.btn-mini {
   color: #333333;
   text-decoration: none;
 }
-[class^="icon-"],
+/*[class^="icon-"],
 [class*=" icon-"] {
   display: inline-block;
   width: 14px;
@@ -2433,7 +2433,7 @@ input[type="submit"].btn.btn-mini {
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px;
-}
+}*/
 /* White icons with optional class, or on hover/focus/active states of certain elements */
 .icon-white,
 .nav-pills > .active > a > [class^="icon-"],

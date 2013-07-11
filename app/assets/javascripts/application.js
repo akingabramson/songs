@@ -12,7 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
+//= require underscore
+//= require_tree ../templates
 //= require_tree .
+
+$(function(){
+	console.log(AUTH_TOKEN);
+})
+
+
 
 uploaded = function(event) {
 	$(".pick-file").html("Uploaded!");
@@ -21,5 +30,3 @@ uploaded = function(event) {
 	$("#song-url").attr("value", url)
 }
 
-$(function(){
-})

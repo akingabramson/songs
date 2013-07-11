@@ -6,6 +6,12 @@ module ApplicationHelper
     end
   end
 
+  def require_json_login
+    unless logged_in?
+      render json: {error_message: "Sorry, you have to be logged in to do that!"}
+    end
+  end
+
   def logged_in?
     !!current_user
   end

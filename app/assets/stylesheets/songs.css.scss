@@ -1,3 +1,210 @@
-// Place all the styles related to the songs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$grey: #C0C0C0;
+$light-grey: darken($grey, 20%);
+
+@mixin absolute-center($width, $height){
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -$width/2;
+	margin-top: -$height/2;
+}
+
+body { 
+   width:100%; 
+   height:100%; 
+   background:url(mountain.jpg) center center;
+   background-size: cover;
+   background-attachment: fixed;
+
+   background-color: black;
+}
+
+form {
+	margin-bottom: 10px;
+	display: table;
+  width: 100%;
+  background-color: transparent;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+
+.container {
+	overflow: hidden;
+}
+
+
+.form-container {
+	border: 1px solid black;
+	overflow: hidden;
+	background-color: $grey;
+	text-align: center;
+  vertical-align: middle;
+  text-align: center;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	clear: both;
+}
+
+.errors {
+	width: 150px;
+	height: 100px;
+	@include absolute-center(150px, 100px);
+}
+
+.song-form {
+	width: 500px;
+	height: 400px;
+	@include absolute-center(500px, 400px);  
+}
+
+.new-user-form {
+	width: 300px;
+	height: 350px;
+	@include absolute-center(300px, 350px);  
+}
+
+.login-form {
+	width: 300px;
+	height: 300px;
+	@include absolute-center(300px, 300px);
+}
+
+.pick-file {
+	margin-top: 10px;
+}
+
+.submit-song {
+	margin-top: 5px;
+	clear: both;
+}
+
+
+#song_hint {
+	margin-top: 15px;
+	width: 375px;
+	height: 150px;
+}
+
+.show-song {
+	top: 20%;
+	width: 300px;
+	overflow: hidden;
+	background-color: $grey;
+	border: 1px solid black;
+	text-align: center;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	margin: auto;
+	position: absolute;
+	left: 50%;
+	margin-left: -150px;
+}
+
+.show-song div {
+	/*clear: both;*/
+	position: relative;
+	overflow: hidden;
+}
+
+.hint {
+
+	text-align: left;
+	margin-left: 20px;
+}
+
+.play-div {
+	text-align: center;
+}
+
+.music-button-div {
+	margin-left: auto;
+	clear: both;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.music-link {
+	margin-left: auto;
+	margin-top: 30px;
+}
+
+.music-button {
+	padding: 5px;
+	font-size: 60px;
+}
+
+
+.icon-stop {
+	margin-left: 20px;
+}
+
+.show-guesses {
+	background-color: white;
+}
+
+.new-guess-form {
+	margin-top: 10px;
+}
+
+.guess-list {
+	margin-top: 10px;
+	text-align: left;
+}
+
+.guess {
+	border-bottom: double $light-grey 1px;
+}
+
+.guess-info {
+	width: 200px;
+	overflow: hidden;
+	display: inline-block;
+	padding-left: 15px;
+}
+
+.guess-username {
+	text-align: left;
+	float: left;
+}
+
+.guess-text {
+	color: $light-grey;
+	padding-left: 4px;
+	text-align: left;
+	float: left;
+}
+
+.guess-score-votes {
+	float: right;
+	margin-right: 15px;
+	padding-top: 5px;
+
+}
+
+.guess-score {
+	float: left;
+	text-align: right;
+	color: orange;
+	font-size: 150%;
+	margin-right: 5px;
+}
+
+.guess-votes {
+	float: right;
+	top: -8px;
+}
+
+.icon-thumbs-up{
+	cursor: ;
+}
+
+.upvoted{
+	color: orange;
+};
+
+.downvoted{
+	color: blue;
+}

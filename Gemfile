@@ -23,6 +23,7 @@ group :development do
   gem 'pry-rails'
 end
 
+gem 'ejs'
 gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-facebook'

@@ -18,7 +18,7 @@ class Song < ActiveRecord::Base
   validates :url, :user_id, presence: true
   validates :url, uniqueness: true
 
-
+  has_many :guesses
   belongs_to :user
 
 end

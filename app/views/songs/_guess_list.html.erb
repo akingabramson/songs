@@ -1,0 +1,15 @@
+<div class="guess-list">
+	<% guesses.each do |guess| %>
+		<div class="guess">
+			<div class="guess-info">
+				<div class="guess-username"><%=guess.user.name%>:</div>
+				<div class="guess-text"><%=guess.text%></div>
+			</div>
+			<div class="guess-score-votes">
+				<div class="guess-score"><%=guess.score%>
+				</div>
+				<%= render partial: "shared/votes", locals: {guess: guess} %>
+			</div>
+		</div>
+	<% end %>
+</div>
