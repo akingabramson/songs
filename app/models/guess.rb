@@ -8,7 +8,11 @@ class Guess < ActiveRecord::Base
   belongs_to :song
   has_many :votes
 
-  def upvote
-    self.score += 1
+  def score
+    votes = self.votes
+    upvotes = self.votes.select {|vote| vote.upvote == true}
+    downvotes = votes.count - upvotes.count
+
+    upvotes.count - downvotes
   end
 end

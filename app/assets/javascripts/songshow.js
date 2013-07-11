@@ -68,6 +68,7 @@ submitGuess = function(button, guessText) {
 }
 
 checkVote = function(event) {
+	console.log("checking vote")
 	var voteButton = $(event.currentTarget);
 	var upvoteRequest = !!voteButton.hasClass("icon-thumbs-up");
 	var upvoted = !!voteButton.hasClass("upvoted")
@@ -81,7 +82,7 @@ checkVote = function(event) {
 
 	if (!!voteId) {
 		if ((upvoteRequest && upvoted) || (!upvoteRequest && downvoted)) {
-			deleteVote(voteId, voteButton, upvoteRequest);
+			deleteVote(voteId, voteButton, upvoteRequest, guessId);
 		} else {
 			editVote(voteId, voteButton, upvoteRequest, guessId);
 		}		// test here console
@@ -101,12 +102,10 @@ createVote = function(upvoted, guessId, upvoteRequest, voteButton) {
 			}
 		},
 		success: function(vote) {
-			if (upvoteRequest) {
-				voteButton.toggleClass("upvoted");
-			} else {
-				voteButton.toggleClass("downvoted");
-			}
-			voteButton.data("id", vote.id);
+			var renderedVotes = JST["voted"]({vote: vote});
+			updateScore(voteButton, upvoteRequest, 1);
+			voteButton.closest("div.guess-votes").html(renderedVotes);
+			resetVoteEventHandlers();
 		},
 		error: function() {
 			fireModal("Voting error.  What is this, the 2000 presidential campaign?")
@@ -124,9 +123,11 @@ editVote = function(voteId, voteButton, upvoteRequest, guessId) {
 				guess_id: guessId
 			}
 		},
-		success: function() {
-				voteButton.toggleClass("upvoted");
-				voteButton.toggleClass("downvoted");
+		success: function(vote) {
+			var renderedVotes = JST["voted"]({vote: vote});
+			updateScore(voteButton, upvoteRequest, 2);
+			voteButton.closest("div.guess-votes").html(renderedVotes);
+			$(".vote").on("click", checkVote)
 		},
 		error: function() {
 			fireModal("Voting error.  What is this, the 2000 presidential campaign?")
@@ -134,23 +135,50 @@ editVote = function(voteId, voteButton, upvoteRequest, guessId) {
 	})
 }
 
-deleteVote = function(voteId, voteButton, upvoted) {
+deleteVote = function(voteId, voteButton, upvoted, guessId) {
 	$.ajax({
 		url: "/votes/" + voteId,
 		type: "delete",
 		success: function() {
 			console.log("vote deleted");
-			if (upvoted) {
-				voteButton.toggleClass("upvoted");
-			} else {
-				voteButton.toggleClass("downvoted");
-			}
-			voteButton.data("id", undefined);
+			var renderedVotes = JST["blankvotes"]({guessId: guessId});
+			updateScore(voteButton, !upvoted, 1);
+			voteButton.closest("div.guess-votes").html(renderedVotes);
+			resetVoteEventHandlers();
+			// so that we don't have multiple event handlers listening
+
 		},
 		error: function() {
 			fireModal("Couldn't delete vote.");
 		}
 	})
+}
+
+resetVoteEventHandlers = function() {
+	$(".vote").off("click", checkVote);
+	$(".vote").on("click", checkVote);
+}
+
+updateScore = function(voteButton, upvoteRequest, multiplier) {
+	console.log(upvoteRequest);
+	var scoreDiv = voteButton.closest("div.guess-score-votes").find(".guess-score");
+	var score = parseInt(scoreDiv.html());
+
+	console.log(scoreDiv);
+	
+	if (upvoteRequest) {
+		score += 1*multiplier;
+	} else {
+		score -= 1*multiplier;
+	}
+	
+	scoreDiv.html(score);
+}
+
+rate = function(event) {
+	event.preventDefault();
+	var button = $(event.currentTarget);
+	console.log(button.data("value"))
 }
 
 fireModal = function(text) {
@@ -161,12 +189,5 @@ fireModal = function(text) {
 $("#music-link").on("click", playOrStopSong);
 $("#submit-guess").on("click", checkGuess);
 $(".vote").on("click", checkVote)
+$(".tough-number").on("click", rate)
 
-// $(function(){
-
-
-	
-
-	
-
-// })

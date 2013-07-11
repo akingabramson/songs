@@ -20,6 +20,7 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     if @song
       @guesses = @song.guesses
+      @tough_rating = @song.rating
       if logged_in?
         @votes = @song.votes_for_user(current_user.id)
       else

@@ -89,9 +89,9 @@ form {
 }
 
 .show-song {
-	top: 20%;
+	top: 10%;
 	width: 300px;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	background-color: $grey;
 	border: 1px solid black;
 	text-align: center;
@@ -104,9 +104,9 @@ form {
 }
 
 .show-song div {
-	/*clear: both;*/
 	position: relative;
-	overflow: hidden;
+		/*overflow: hidden;*/
+
 }
 
 .hint {
@@ -136,26 +136,53 @@ form {
 	font-size: 60px;
 }
 
+.toughness-header {
+	margin-bottom: 5px;
+}
+
+.toughness-bar {
+	margin-bottom: 20px;
+}
+
+.tough-number {
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	padding-left: 3px;
+	padding-right: 3px;
+
+	&:hover {
+		text-decoration: none;
+		color: black;
+	}
+}
 
 .icon-stop {
 	margin-left: 20px;
 }
 
 .show-guesses {
+	padding-top: 10px;
+
 	background-color: white;
+	border-bottom: 1px solid black;
+	-moz-border-radius: 15px;
+	bottom-border-radius: 15px;
 }
 
 .new-guess-form {
-	margin-top: 10px;
 }
 
 .guess-list {
 	margin-top: 10px;
 	text-align: left;
+
 }
 
 .guess {
+	padding-bottom: 10px;
 	border-bottom: double $light-grey 1px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+
 }
 
 .guess-info {

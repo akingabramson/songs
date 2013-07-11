@@ -12,6 +12,18 @@
 	<div class="music-button-div">
 		<a href="#" id="music-link" class="play-button"><span class="icon-play-circled music-button"></span></a>
 	</div>
+	<div class="toughness-header">
+		How tough is it to guess?
+	</div>
+		<div class="toughness-labels">
+		<span>Easy</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Tough</span>
+	</div>
+	<div class="toughness-bar">
+		<% 10.times do |i| %>
+			<a href="#" class="tough-number tough-number-<%=i+1%>" data-value="<%=i+1%>"><%=i+1%></a>
+		<% end %>
+	</div>
+
 	<div class="show-guesses">
 		<div class="new-guess-form">
 			<input type="hidden" id="song-id" data-id="<%=@song.id%>">
