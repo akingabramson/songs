@@ -20,6 +20,7 @@ class Song < ActiveRecord::Base
 
   has_many :guesses
   has_many :votes, through: :guesses
+  has_many :ratings
   belongs_to :user
 
   def votes_for_user(user_id)

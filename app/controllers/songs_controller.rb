@@ -20,10 +20,11 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     if @song
       @guesses = @song.guesses
-      @tough_rating = @song.rating
       if logged_in?
+        @tough_rating = Rating.get_for_song(params[:id], current_user.id)
         @votes = @song.votes_for_user(current_user.id)
       else
+        @tough_rating = nil
         @votes = []
       end
       render :show

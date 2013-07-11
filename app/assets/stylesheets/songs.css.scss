@@ -110,7 +110,7 @@ form {
 }
 
 .hint {
-
+	margin-bottom: 10px;
 	text-align: left;
 	margin-left: 20px;
 }
@@ -141,6 +141,7 @@ form {
 }
 
 .toughness-bar {
+	margin-top: 5px;
 	margin-bottom: 20px;
 }
 
@@ -165,7 +166,9 @@ form {
 	background-color: white;
 	border-bottom: 1px solid black;
 	-moz-border-radius: 15px;
-	bottom-border-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+
 }
 
 .new-guess-form {
@@ -178,7 +181,7 @@ form {
 }
 
 .guess {
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 	border-bottom: double $light-grey 1px;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
@@ -233,10 +236,14 @@ form {
 	cursor: pointer;
 }
 
-.upvoted{
+.upvoted {
 	color: orange;
 };
 
-.downvoted{
+.downvoted {
 	color: blue;
+}
+
+.selected {
+	color: green;
 }

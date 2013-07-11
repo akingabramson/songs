@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   has_many :songs
+  has_many :song_toughness_ratings, through: :songs, source: :ratings
+  
+  has_many :submitted_ratings, class_name: "Rating", foreign_key: :rater_id
   has_many :guesses
   has_many :votes, foreign_key: :voter_id, inverse_of: :voter
 

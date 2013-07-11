@@ -3,12 +3,6 @@
 </audio>
 <div class="show-song">
 	<div><h3>Song #<%=@song.id%></h3></div>
-	<div class="hint">
-		<b class="hint-label">Hint:</b>
-		<p>
-			<%= @song.hints ? @song.hints : "No hints given" %>
-		</p>
-	</div>
 	<div class="music-button-div">
 		<a href="#" id="music-link" class="play-button"><span class="icon-play-circled music-button"></span></a>
 	</div>
@@ -20,8 +14,18 @@
 	</div>
 	<div class="toughness-bar">
 		<% 10.times do |i| %>
-			<a href="#" class="tough-number tough-number-<%=i+1%>" data-value="<%=i+1%>"><%=i+1%></a>
+			<% if @tough_rating && @tough_rating.value == i + 1 %>
+				<a href="#" class="tough-number tough-number-<%=i+1%> selected" data-value="<%=i+1%>" data-song-id="<%=@song.id%>" data-id="<%=@tough_rating.id%>"><%=i+1%></a>
+			<% elsif @tough_rating%>
+				<a href="#" class="tough-number tough-number-<%=i+1%>" data-value="<%=i+1%>" data-song-id="<%=@song.id%>" data-id="<%=@tough_rating.id%>"><%=i+1%></a>
+			<% else %>
+				<a href="#" class="tough-number tough-number-<%=i+1%>" data-song-id="<%=@song.id%>" data-value="<%=i+1%>"><%=i+1%></a>
+			<% end %>
 		<% end %>
+	</div>
+
+	<div class="hint">
+		<b class="hint-label">Hint:  </b><%= @song.hints ? @song.hints : "No hints given" %>
 	</div>
 
 	<div class="show-guesses">

@@ -1,4 +1,3 @@
-
 playOrStopSong = function(event) {
 	event.preventDefault();
 
@@ -78,7 +77,6 @@ checkVote = function(event) {
 
 
 	var voteId = voteButton.data("id");
-	console.log(voteId);
 
 	if (!!voteId) {
 		if ((upvoteRequest && upvoted) || (!upvoteRequest && downvoted)) {
@@ -160,11 +158,8 @@ resetVoteEventHandlers = function() {
 }
 
 updateScore = function(voteButton, upvoteRequest, multiplier) {
-	console.log(upvoteRequest);
 	var scoreDiv = voteButton.closest("div.guess-score-votes").find(".guess-score");
 	var score = parseInt(scoreDiv.html());
-
-	console.log(scoreDiv);
 	
 	if (upvoteRequest) {
 		score += 1*multiplier;
@@ -177,9 +172,65 @@ updateScore = function(voteButton, upvoteRequest, multiplier) {
 
 rate = function(event) {
 	event.preventDefault();
+
 	var button = $(event.currentTarget);
-	console.log(button.data("value"))
+	var ratingId = button.data("id");
+	var selected = button.hasClass("selected");
+
+	// if rating exists
+	if (!!ratingId && selected) {
+		deleteRating(button, ratingId);
+		// delete it
+	} else {
+		createOrEditRating(button, ratingId);
+		// post
+	}
 }
+
+createOrEditRating = function(button, ratingId) {
+	$.ajax({
+		url: "/ratings/",
+		type: "post",
+		data: { 
+			rating: {
+				song_id: button.data("song-id"),
+				value: button.data("value"),
+				id: ratingId
+			}
+		},
+		success: function(rating) {
+			var renderedRating = JST["rating"]({rating: rating, songId: button.data("song-id")});
+			button.closest(".toughness-bar").html(renderedRating);
+			resetRatingEventHandlers();
+			// fill in parent html
+		},
+		error: function() {
+			fireModal("Error deleting rating.");
+		}
+	})
+}
+
+deleteRating = function(button, ratingId) {
+	$.ajax({
+		url: "/ratings/" + ratingId,
+		type: "delete",
+		success: function() {
+			var renderedRating = JST["rating"]({rating: undefined,
+																					songId: button.data("song-id")});
+			button.closest(".toughness-bar").html(renderedRating);
+			resetRatingEventHandlers();
+		},
+		error: function() {
+			fireModal("Error deleting rating.");
+		}
+	})
+}
+
+resetRatingEventHandlers = function() {
+$(".tough-number").off("click", rate);
+$(".tough-number").on("click", rate);
+}
+
 
 fireModal = function(text) {
 	$(".modal-body").html(text);

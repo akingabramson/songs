@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711032017) do
+ActiveRecord::Schema.define(:version => 20130711182528) do
 
   create_table "guesses", :force => true do |t|
     t.integer  "user_id",                   :null => false
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(:version => 20130711032017) do
     t.integer  "score",      :default => 1
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "rater_id"
+    t.integer  "song_id"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "songs", :force => true do |t|
