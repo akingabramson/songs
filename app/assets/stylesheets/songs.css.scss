@@ -161,14 +161,14 @@ form {
 
 .show-guesses {
 	padding-top: 10px;
-	padding-bottom: 5px;
+	/*padding-bottom: 5px;*/
 	/*margin-bottom: 5px;*/
 
 	background-color: white;
-/*	border-bottom: 1px solid black;
+	border-bottom: 1px solid black;
 	-moz-border-radius: 15px;
 	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;*/
+	border-bottom-right-radius: 15px;
 
 }
 
@@ -178,6 +178,9 @@ form {
 .guess-list {
 	margin-top: 10px;
 	text-align: left;
+/*	-moz-border-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;*/
 
 }
 
