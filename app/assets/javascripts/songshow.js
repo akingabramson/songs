@@ -55,7 +55,7 @@ submitGuess = function(button, guessText, event) {
 			button.text("Submitted!");
 			button.addClass("btn-success");
 			$(".guess-list").prepend(renderedGuess);
-			var renderedNewVotes = JST["blankvotes"]({guessId: guess.id});
+			var renderedNewVotes = JST["newblankvotes"]({guessId: guess.id});
 			$("div.guess-score-votes:first").prepend(renderedNewVotes);
 			console.log($("div.guess-score-votes:first").html());
 			resetVoteEventHandlers();
