@@ -132,7 +132,7 @@ editVote = function(voteId, voteButton, upvoteRequest, guessId) {
 			$(".vote").on("click", checkVote)
 		},
 		error: function() {
-			fireModal("Voting error.  What is this, the 2000 presidential campaign?")
+			fireModal("Voting error.  What is this, the 2000 presidential election?")
 		}
 	})
 }
