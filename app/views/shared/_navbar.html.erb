@@ -8,7 +8,7 @@
       <li class="nav-item">
       	<a href="/random_song">Random</a></li>
     </ul>
-    <ul class="nav user-nav">
+    <ul class="nav user-nav pull-right">
     	<% if logged_in? %>
     		<li><a href="#">Smarts Rating: <%=current_user.smarts || "0" %></a></li>
 	    	<li><%= link_to "#{current_user.name}", "users/#{current_user.id}" %>

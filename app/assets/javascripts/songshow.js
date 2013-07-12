@@ -12,7 +12,6 @@ playOrStopSong = function(event) {
 }
 
 playsong = function(button, song) {
-
 	console.log("playing song");
 	song.play();
 	button.html('<span class="icon-stop music-button"></span>');
@@ -56,9 +55,14 @@ submitGuess = function(button, guessText, event) {
 			button.text("Submitted!");
 			button.addClass("btn-success");
 			$(".guess-list").prepend(renderedGuess);
+			var renderedNewVotes = JST["blankvotes"]({guessId: guess.id});
+			$("div.guess-score-votes:first").prepend(renderedNewVotes);
+			console.log($("div.guess-score-votes:first").html());
+			resetVoteEventHandlers();
+
 		},
 		error: function(guess) {
-			fireModal("Could not save your guess! Make sure you're logged in.")
+			fireModal("Could not save your guess! Make sure that you're logged in and haven't already guessed.")
 			button.text("Guess!");
 			console.log(event.currentTarget)
 			event.currentTarget.disabled = false;
