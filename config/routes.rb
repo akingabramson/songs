@@ -1,6 +1,6 @@
 Songs::Application.routes.draw do
 
-  root :to => "random_songs#show"
+  root :to => "root#root"
 
   resources :users
   resources :songs

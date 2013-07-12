@@ -48,15 +48,12 @@ form {
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	clear: both;
-
 	margin-top: 20px;
 }
 
 
 .errors {
-	width: 150px;
-	height: 100px;
-	@include absolute-center(150px, 100px);
+	margin-bottom: 5px;
 }
 
 .song-form {
