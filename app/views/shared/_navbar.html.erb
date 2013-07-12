@@ -10,7 +10,7 @@
     </ul>
     <ul class="nav user-nav">
     	<% if logged_in? %>
-    		<li><a href="#">Toughness Rating: <%=current_user.toughness || "0" %></a></li>
+    		<li><a href="#">Smarts Rating: <%=current_user.smarts || "0" %></a></li>
 	    	<li><%= link_to "#{current_user.name}", "users/#{current_user.id}" %>
 	    	</li>
 				<li class="logout-link"><%= link_to "Logout", "/session",method: :delete %></a>

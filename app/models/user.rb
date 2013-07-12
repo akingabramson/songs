@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   def smarts
     upvotes = self.guess_votes.where(upvote: true)
     downvotes = self.guess_votes.where(upvote: false)
+
+    upvotes.count - downvotes.count
   end
 
   def reset_session_token!
