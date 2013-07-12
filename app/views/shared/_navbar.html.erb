@@ -1,0 +1,28 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">TipOfMyTune</a>
+    <ul class="nav">
+      <li class="nav-item <%="active" if @page && @page == "home" %>"><a href="/">Home</a></li>
+      <li class="nav-item <%="active" if @page && @page == "new" %>"><a href="/songs/new">New Song</a></li>
+      <li class="nav-item <%="active" if @page && @page == "toughest" %>"><a href="/toughest_songs">Toughest Songs</a></li>
+      <li class="nav-item">
+      	<a href="/random_song">Random</a></li>
+    </ul>
+    <ul class="nav user-nav">
+    	<% if logged_in? %>
+    		<li><a href="#">Toughness Rating: <%=current_user.toughness%></a></li>
+	    	<li><%= link_to "#{current_user.name}", "users/#{current_user.id}" %>
+	    	</li>
+				<li class="logout-link"><%= link_to "Logout", "/session",method: :delete %></a>
+				</li>
+			<% else %>
+				<li>
+					<%= link_to "Login", "/session/new" %>
+				</li>
+				<li>
+					<%= link_to "Sign Up", "/users/new" %>
+				</li>
+    	<% end %>
+    </ul>
+  </div>
+</div>

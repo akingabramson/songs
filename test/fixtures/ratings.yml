@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  rater_id: 1
+  song_id: 1
+  value: 1
+
+two:
+  rater_id: 1
+  song_id: 1
+  value: 1

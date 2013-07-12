@@ -8,7 +8,7 @@ module ApplicationHelper
 
   def require_json_login
     unless logged_in?
-      render json: {error_message: "Sorry, you have to be logged in to do that!"}
+      render json: {error_message: "Sorry, you have to be logged in to do that!"}, status: 403
     end
   end
 

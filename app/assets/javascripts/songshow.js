@@ -34,15 +34,14 @@ checkGuess = function(event) {
 		fireModal("You forgot to write your text!");
 		event.currentTarget.disabled = false;
 	} else {
-		submitGuess(button, guessText);
+		submitGuess(button, guessText, event);
 	}
 }
 
-submitGuess = function(button, guessText) {
+submitGuess = function(button, guessText, event) {
 	button.text("Submitting...");
 	var songId = $("#song-id").data("id");
 
-	console.log(songId)
 	$.ajax({
 		url: "/guesses",
 		type: "post",
@@ -53,14 +52,15 @@ submitGuess = function(button, guessText) {
 		},
 		success: function(guess) {
 			// reassign AUTH_TOKEN?
-
 			var renderedGuess = JST["guess"]({guess: guess});
 			button.text("Submitted!");
 			button.addClass("btn-success");
 			$(".guess-list").prepend(renderedGuess);
 		},
 		error: function(guess) {
-			fireModal("Could not save your guess! Maybe you already made one?")
+			fireModal("Could not save your guess! Make sure you're logged in.")
+			button.text("Guess!");
+			console.log(event.currentTarget)
 			event.currentTarget.disabled = false;
 		}
 	})

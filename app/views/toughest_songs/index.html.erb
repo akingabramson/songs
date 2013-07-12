@@ -1,0 +1,16 @@
+<div class="show-song">
+	<div><h3>Toughest Songs</h3></div>
+	<div class="tough-songs-wrapper">
+	<table class="tough-songs-list">
+	<% @songs.each_with_index do |song, index| %>
+		<tr class="tough-song">
+			<td><%=index + 1%>. &nbsp;
+			</td>
+			<td><a href="/songs/<%=song.id%>">Song #<%=song.id%></a>&nbsp;</td>
+			<td>| Toughness: <%=song.tough_points%></td>
+		</tr>
+	<% end %>
+	</table>
+
+</div>
+

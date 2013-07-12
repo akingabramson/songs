@@ -45,12 +45,13 @@ form {
 	overflow: hidden;
 	background-color: $grey;
 	text-align: center;
-  vertical-align: middle;
-  text-align: center;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	clear: both;
+
+	margin-top: 20px;
 }
+
 
 .errors {
 	width: 150px;
@@ -61,7 +62,8 @@ form {
 .song-form {
 	width: 500px;
 	height: 400px;
-	@include absolute-center(500px, 400px);  
+	margin: auto
+	/*@include absol: ;ute-center(500px, 400px);  */
 }
 
 .new-user-form {
@@ -136,7 +138,7 @@ form {
 }
 
 .music-button {
-	padding: 5px;
+	/*padding: 5px;*/
 	font-size: 60px;
 }
 
@@ -161,7 +163,6 @@ form {
 }
 
 .icon-stop {
-	margin-left: 20px;
 }
 
 .show-guesses {

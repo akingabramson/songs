@@ -1,0 +1,13 @@
+<% console.log(rating) %>
+
+<% for (i = 0; i <= 9; i++) { %>
+	<% if (rating) { %>
+		<% if (rating.value == i + 1) { %>
+			<a href="#" class="tough-number tough-number-<%=i+1%> selected" data-value="<%=i+1%>" data-song-id="<%=songId%>" data-id="<%=rating.id%>"><%=i+1%></a>
+		<% } else { %>
+			<a href="#" class="tough-number tough-number-<%=i+1%>" data-value="<%=i+1%>" data-song-id="<%=songId%>" data-id="<%=rating.id%>"><%=i+1%></a>
+			<% } %>
+	<% } else { %>
+		<a href="#" class="tough-number tough-number-<%=i+1%>" data-song-id="<%=songId%>" data-value="<%=i+1%>"><%=i+1%></a>
+	<% } %>
+<% } %>

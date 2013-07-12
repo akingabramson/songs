@@ -1,5 +1,5 @@
 class GuessesController < ApplicationController
-  # before_filter :require_json_login
+  before_filter :require_json_login
 
   def create
     @guess = current_user.guesses.build(params[:guess])
