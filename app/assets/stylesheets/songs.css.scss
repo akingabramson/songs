@@ -164,6 +164,8 @@ form {
 
 .show-guesses {
 	padding-top: 10px;
+	padding-bottom: 5px;
+	/*margin-bottom: 5px;*/
 
 	background-color: white;
 /*	border-bottom: 1px solid black;
@@ -174,7 +176,6 @@ form {
 }
 
 .new-guess-form {
-	margin-bottom: 5px;
 }
 
 .guess-list {
