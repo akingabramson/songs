@@ -21,10 +21,16 @@ class User < ActiveRecord::Base
   
   has_many :submitted_ratings, class_name: "Rating", foreign_key: :rater_id
   has_many :guesses
+  has_many :guess_votes, through: :guesses, source: :votes
   has_many :votes, foreign_key: :voter_id, inverse_of: :voter
 
   def toughness
     self.song_toughness_ratings.average(:value).to_s
+  end
+  
+  def smarts
+    upvotes = self.guess_votes.where(upvote: true)
+    downvotes = self.guess_votes.where(upvote: false)
   end
 
   def reset_session_token!

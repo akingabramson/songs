@@ -10,7 +10,7 @@ class Guess < ActiveRecord::Base
 
   def score
     votes = self.votes
-    upvotes = self.votes.select {|vote| vote.upvote == true}
+    upvotes = votes.select {|vote| vote.upvote == true}
     downvotes = votes.count - upvotes.count
 
     upvotes.count - downvotes

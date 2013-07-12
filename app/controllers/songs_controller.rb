@@ -22,7 +22,8 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     if @song
       @page = "show"
-      @guesses = @song.guesses
+      @guesses = @song.guesses.sort {|guess| guess.score}
+      @guesses.reverse!
       if logged_in?
         @tough_rating = Rating.get_for_song(params[:id], current_user.id)
         @votes = @song.votes_for_user(current_user.id)
