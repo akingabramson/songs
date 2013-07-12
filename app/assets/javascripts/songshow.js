@@ -205,7 +205,7 @@ createOrEditRating = function(button, ratingId) {
 			// fill in parent html
 		},
 		error: function() {
-			fireModal("Error deleting rating.");
+			fireModal("You have to be logged in to rate!");
 		}
 	})
 }
