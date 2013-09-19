@@ -37,6 +37,7 @@ gem 'pg'
 gem 'pg_search'
 gem 'filepicker-rails'
 gem 'underscore-rails'
+gem 'newrelic_rpm'
 
 
 # To use ActiveModel has_secure_password
