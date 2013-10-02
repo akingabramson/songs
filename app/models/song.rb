@@ -23,12 +23,9 @@ class Song < ActiveRecord::Base
   has_many :ratings
   belongs_to :user
 
-  def update_toughness
-    self.tough_points = self.ratings.sum("value")
-    self.save!
+  def toughness
+    self.ratings.sum("value")
   end
-
-  
 
   def votes_for_user(user_id)
     self.votes.where("votes.voter_id = ?", user_id)
